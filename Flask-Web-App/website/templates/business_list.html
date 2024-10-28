@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Display with Details and Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            gap: 20px;
+        }
+        .left-section {
+            flex: 1;
+            max-width: 50%;
+        }
+        .image {
+            width: 100%;
+            height: auto;
+            max-height: 50vh;
+            object-fit: cover;
+        }
+        .image-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .details {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .details p {
+            margin: 5px 0;
+        }
+        .right-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-button {
+            padding: 15px;
+            font-size: 1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .option-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Left Section with Image and Details -->
+    <div class="left-section">
+        <img src="{{ url_for('static', filename=entity[ID].image) }}" alt="{{ entity.name }}" class="image">
+        <div class="image-name">{{ entity.name }}</div>
+        <div class="details">
+            <p><strong>Address:</strong> 123 Example St, Example City</p>
+            <p><strong>Contact Number:</strong> (123) 456-7890</p>
+            <p><strong>Email:</strong> example@domain.com</p>
+        </div>
+    </div>
+
+    <!-- Right Section with Option Buttons -->
+    <div class="right-section">
+        <button class="option-button">Option 1</button>
+        <button class="option-button">Option 2</button>
+        <button class="option-button">Option 3</button>
+        <button class="option-button">Option 4</button>
+    </div>
+</div>
+
+</body>
+</html>

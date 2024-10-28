@@ -1,0 +1,98 @@
+{% extends "base.html" %} {% block title %}index{% endblock %} {% block content
+    %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .greeting {
+            font-size: 40px;
+        }
+        .user-profile {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            margin-bottom: 40px;
+        }
+        .gallery-item {
+            flex: 0 0 auto;
+            margin-right: 10px;
+            text-align: center;
+        }
+        .gallery-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="greeting">{{ greeting }}</div>
+    <img src="{{ url_for('static', filename='images/user-profile.jpg') }}" alt="User Profile" class="user-profile" onclick="goToProfile()">
+</header>
+
+<div class="section">
+    <h2>Sellers</h2>
+    <div class="gallery">
+        {% for seller in sellers %}
+            <div class="gallery-item">
+                <a href="{{ url_for('views.business_list', business_id=seller.number)}}">
+                    <img src="{{ url_for('static', filename=seller.image) }}" alt="{{ seller.name }}" style="width:200px;height:128px;">
+                </a>
+                <p>{{ seller.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="section">
+    <h2>Buyers</h2>
+    <div class="gallery">
+        {% for buyer in buyers %}
+            <div class="gallery-item">
+                <a href="{{ url_for('views.business_list', business_id=buyer.number)}}">
+                    <img src="{{ url_for('static', filename=buyer.image) }}" alt="{{ buyer.name }}" style="width:200px;height:128px;">
+                </a>
+                <p>{{ buyer.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function goToProfile() {
+        alert('Redirecting to profile...');
+    }
+</script>
+
+</body>
+</html>
+{% endblock %}
